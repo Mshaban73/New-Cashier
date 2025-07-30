@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { Permission } from '../types';
+import { Permission } from '../contexts/DataContext';
 import { ChartBarIcon } from './icons/ChartBarIcon';
 import { CashIcon } from './icons/CashIcon';
 import { CalculatorIcon } from './icons/CalculatorIcon';

@@ -1,3 +1,6 @@
+// ==========================================================
+//   ملف: App.tsx (النسخة النهائية مع الإصلاح المباشر)
+// ==========================================================
 
 import React from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -9,7 +12,15 @@ import { Transactions } from './pages/Transactions';
 import { UserManagement } from './pages/UserManagement';
 import { Reconciliation } from './pages/Reconciliation';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { Permission } from './types';
+
+// VVVV تم نسخ النوع المطلوب هنا مباشرة VVVV
+export enum Permission {
+  MANAGE_USERS = 'MANAGE_USERS',
+  ADD_TRANSACTION = 'ADD_TRANSACTION',
+  VIEW_REPORTS = 'VIEW_REPORTS',
+  PERFORM_RECONCILIATION = 'PERFORM_RECONCILIATION',
+}
+// VVVV تم حذف سطر import { Permission } from "./types"; VVVV
 
 function App() {
   return (
@@ -19,23 +30,19 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
 
-            {/* Routes that only require the user to be logged in */}
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
             </Route>
 
-            {/* Route for transactions, requiring ADD_TRANSACTION permission */}
             <Route element={<ProtectedRoute requiredPermission={Permission.ADD_TRANSACTION} />}>
               <Route path="transactions" element={<Transactions />} />
             </Route>
 
-            {/* Route for reconciliation, requiring PERFORM_RECONCILIATION permission */}
             <Route element={<ProtectedRoute requiredPermission={Permission.PERFORM_RECONCILIATION} />}>
               <Route path="reconciliation" element={<Reconciliation />} />
             </Route>
             
-            {/* Route for user management, requiring MANAGE_USERS permission */}
             <Route element={<ProtectedRoute requiredPermission={Permission.MANAGE_USERS} />}>
               <Route path="users" element={<UserManagement />} />
             </Route>

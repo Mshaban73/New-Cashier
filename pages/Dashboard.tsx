@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { useData } from '../contexts/DataContext';
-import { Transaction, TransactionType } from '../types';
-import { useAuth } from '../hooks/useAuth';
+import { Transaction, TransactionType } from '../contexts/DataContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const StatCard: React.FC<{ title: string; value: string; color: string }> = ({ title, value, color }) => (
     <div className={`bg-gray-800 p-6 rounded-xl border border-gray-700`}>

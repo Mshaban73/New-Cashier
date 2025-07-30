@@ -2,7 +2,7 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { Permission } from '../types';
+import { Permission } from '../contexts/DataContext';
 import { Sidebar } from './Sidebar';
 
 interface ProtectedRouteProps {

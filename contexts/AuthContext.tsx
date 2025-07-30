@@ -1,8 +1,11 @@
+// src/contexts/AuthContext.tsx (النسخة النظيفة والنهائية)
 
-import React, { createContext, useState, ReactNode, useMemo } from 'react';
-import { User, Permission } from '../types';
-import { useData } from './DataContext';
+import React, { createContext, useContext, useState, ReactNode, useMemo } from 'react';
+// VVVV هذا هو التعديل الأهم VVVV
+import { useData, User, Permission } from './DataContext'; // استيراد الأنواع من DataContext
 import { useLocalStorage } from '../hooks/useLocalStorage';
+
+// تم حذف كل الأنواع المكررة من هنا
 
 interface AuthContextType {
     currentUser: User | null;
@@ -14,7 +17,7 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const { users } = useData();
+    const { users } = useData(); 
     const [currentUserId, setCurrentUserId] = useLocalStorage<string | null>('treasury_current_user_id', null);
 
     const currentUser = useMemo(() => {
@@ -42,4 +45,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const value = { currentUser, login, logout, hasPermission };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (context === undefined) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
+    return context;
 };

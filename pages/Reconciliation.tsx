@@ -1,8 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { useData } from '../contexts/DataContext';
-import { TransactionType, DailyLog } from '../types';
-import { useAuth } from '../hooks/useAuth';
+import { TransactionType, DailyLog } from '../contexts/DataContext';
+import { useAuth } from '../contexts/AuthContext';
 
 export const Reconciliation: React.FC = () => {
     const { transactions, dailyLogs, addDailyLog, users } = useData();

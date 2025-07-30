@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useData } from '../contexts/DataContext';
-import { User, Permission } from '../types';
+import { User, Permission } from '../contexts/DataContext';
 
 const UserFormModal: React.FC<{ user?: User; onClose: () => void }> = ({ user, onClose }) => {
     const { addUser, updateUser } = useData();

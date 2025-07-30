@@ -1,8 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { useData } from '../contexts/DataContext';
-import { Transaction, TransactionType } from '../types';
-import { useAuth } from '../hooks/useAuth';
+import { Transaction, TransactionType } from '../contexts/DataContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const TransactionForm: React.FC<{ type: TransactionType; onClose: () => void }> = ({ type, onClose }) => {
     const [amount, setAmount] = useState('');
